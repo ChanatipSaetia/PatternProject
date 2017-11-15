@@ -28,7 +28,7 @@ class AutoEncoder(nn.Module, BaseEstimator, TransformerMixin):
         return x
 
     def fit(self, x, y=None):
-        x = Variable(FloatTensor(x).cuda())
+        x = Variable(FloatTensor(x))
         for epoch in range(2000):
             # ===================forward=====================
             output = self(x)
@@ -43,5 +43,5 @@ class AutoEncoder(nn.Module, BaseEstimator, TransformerMixin):
         return self
 
     def transform(self, x):
-        x = Variable(FloatTensor(x).cuda())
+        x = Variable(FloatTensor(x))
         return self.encoder(x).data.cpu().numpy()
